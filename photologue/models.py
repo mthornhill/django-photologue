@@ -139,6 +139,9 @@ class Gallery(models.Model):
                                     null=True, blank=True)
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
 
+    modified = ModificationDateTimeField()
+    uid = UUIDField()
+
     class Meta:
         ordering = ['-date_added']
         get_latest_by = 'date_added'
@@ -535,6 +538,9 @@ class Photo(ImageModel):
     date_added = models.DateTimeField(_('date added'), default=datetime.now, editable=False)
     is_public = models.BooleanField(_('is public'), default=True, help_text=_('Public photographs will be displayed in the default views.'))
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
+
+    modified = ModificationDateTimeField()
+    uid = UUIDField()
 
     class Meta:
         ordering = ['-date_added']
